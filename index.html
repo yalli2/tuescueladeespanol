@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Español paso a paso · 입문·초급 스페인어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky study bar + single reading column; main page is a chapter grid with a 3-step method strip */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --ink:#172033; --muted:#5B6679; --line:#DDE2EC;
+  --accent:#B8283F; --accent-ink:#FFFFFF; --accent-soft:#FBE4E8;
+  --gold:#F2B705; --gold-soft:#FFF3C4; --chip:#E8EDF6;
+  --ok:#12805C; --ok-soft:#DDF4EA; --bad:#C0302B; --bad-soft:#FDE3E1; --half:#8A5600; --half-soft:#FFF0CC;
+  --f-display:"Bricolage Grotesque","Noto Sans KR",system-ui,sans-serif;
+  --f-body:"Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1522; --surface:#182033; --ink:#ECEFF6; --muted:#9AA6BC; --line:#2A3550;
+  --accent:#F0627A; --accent-ink:#1A0509; --accent-soft:#3B1A24; --gold:#F2B705; --gold-soft:#3A3010; --chip:#222C45;
+  --ok:#4FD1A0; --ok-soft:#12382D; --bad:#FF7A74; --bad-soft:#43201F; --half:#F2B705; --half-soft:#3A3010; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1522; --surface:#182033; --ink:#ECEFF6; --muted:#9AA6BC; --line:#2A3550;
+  --accent:#F0627A; --accent-ink:#1A0509; --accent-soft:#3B1A24; --gold:#F2B705; --gold-soft:#3A3010; --chip:#222C45;
+  --ok:#4FD1A0; --ok-soft:#12382D; --bad:#FF7A74; --bad-soft:#43201F; --half:#F2B705; --half-soft:#3A3010; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;margin:0}
+h1,h2,h3{font-family:var(--f-display);line-height:1.2;text-wrap:balance;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:980px;margin-inline:auto;padding-inline:16px}
+.col{max-width:780px;margin-inline:auto;padding-inline:16px}
+.es{font-style:italic;font-weight:500;cursor:pointer;border-bottom:1.5px dotted var(--accent);white-space:normal}
+.es:hover{background:var(--accent-soft)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+/* ===== main ===== */
+.hero{padding-block:48px 28px}
+.hero h1{font-size:clamp(2.4rem,7vw,4rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:60ch;color:var(--muted);margin:14px 0 0}
+.who{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:24px}
+.who label{font-weight:700;font-size:.9rem}
+.who input{font:inherit;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:min(100%,260px)}
+.overall{display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--muted)}
+.bar{height:8px;border-radius:99px;background:var(--chip);overflow:hidden;min-width:120px;flex:1}
+.bar>i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .4s}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-block:8px 36px;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--gold-soft);border-radius:14px;padding:14px 16px;font-size:.92rem}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#241a00;font-weight:800;margin-right:8px;font-family:var(--f-display)}
+.steps b{display:inline}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;padding-bottom:48px}
+.card{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;transition:transform .15s,box-shadow .15s;min-width:0}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(20,30,60,.12)}
+.card .no{font-family:var(--f-display);font-weight:800;font-size:3.4rem;line-height:1;color:var(--accent)}
+.card h2{font-size:1.35rem;font-style:italic}
+.card .ko{font-weight:700}
+.card .desc{color:var(--muted);font-size:.9rem;flex:1}
+.card .meta{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.card .go{font-weight:700;color:var(--accent)}
+.card.soon{background:transparent;border-style:dashed;justify-content:center;color:var(--muted);pointer-events:none}
+footer.site{padding-block:0 48px;color:var(--muted);font-size:.84rem}
+
+/* ===== chapter ===== */
+.studybar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.sb-row{display:flex;align-items:center;gap:10px;padding-block:8px;flex-wrap:wrap}
+.home{text-decoration:none;font-weight:700;font-size:.92rem;padding:6px 10px;border-radius:8px;background:var(--chip)}
+.tabs{display:flex;gap:6px}
+.tabs a{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;text-decoration:none;font-weight:700;font-family:var(--f-display);background:var(--chip)}
+.tabs a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
+.sb-spacer{flex:1}
+.count{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.btn{border:0;border-radius:10px;padding:9px 16px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--chip);color:var(--ink)}
+.btn:hover{filter:brightness(1.07)}
+.keys{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:8px}
+.keys button{min-width:34px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-weight:700}
+.keys span{font-size:.78rem;color:var(--muted);align-self:center;margin-right:4px}
+
+.ch-head{padding-block:36px 12px}
+.ch-head .no{font-family:var(--f-display);font-weight:800;color:var(--accent);font-size:1rem;letter-spacing:.1em}
+.ch-head h1{font-size:clamp(2rem,6vw,3rem);font-style:italic;font-weight:800;margin-top:4px}
+.ch-head h1 small{display:block;font-size:.5em;font-style:normal;font-weight:500;color:var(--muted);margin-top:4px}
+section.theory{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;margin-block:18px}
+section.theory h2{font-size:1.3rem;margin-bottom:10px}
+section.theory h3{font-size:1.05rem;margin:22px 0 8px}
+section.theory p{margin:8px 0}
+.tip{font-size:.84rem;color:var(--muted);margin:0 0 4px}
+.tw{overflow-x:auto;margin-block:10px}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:.95rem}
+th{background:var(--accent);color:var(--accent-ink);text-align:left;padding:8px 12px;font-size:.85rem}
+td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.note{border-radius:12px;padding:12px 14px;margin-block:12px;font-size:.95rem}
+.note.warn{background:var(--gold-soft)}
+.note.pero{background:var(--accent-soft)}
+.note b.lab{font-family:var(--f-display);letter-spacing:.06em;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-block:8px}
+.chips .es{background:var(--chip);border:0;padding:3px 10px;border-radius:99px}
+ul.rules{padding-left:1.2em;margin:8px 0}
+ul.rules li{margin-block:4px}
+
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;margin-block:18px}
+.ex-head{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin-bottom:6px}
+.ex-head h2{font-size:1.2rem}
+.ex-score{font-family:var(--f-display);font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.ex p.instr{margin:0 0 14px;color:var(--muted);font-size:.93rem}
+ol.items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+li.item{display:grid;grid-template-columns:28px 1fr;gap:8px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;min-width:0;align-items:start}
+li.item .n{font-size:.8rem;font-weight:700;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.q{min-width:0;overflow-wrap:anywhere}
+.q input{font:inherit;font-style:italic;width:9.5em;max-width:100%;padding:3px 8px;margin-inline:4px;border:0;border-bottom:2px solid var(--accent);background:var(--chip);color:var(--ink);border-radius:6px 6px 0 0}
+.blank{display:inline-block;min-width:3.4em;text-align:center;margin-inline:4px;padding:0 8px;border-bottom:2px solid var(--accent);background:var(--chip);border-radius:6px 6px 0 0;font-style:italic;font-weight:500;min-height:1.5em;vertical-align:bottom}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.opts button{border:1.5px solid var(--line);background:var(--bg);border-radius:9px;padding:3px 12px;font-style:italic;font-size:.95rem}
+.opts button[aria-checked="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fb{font-size:.86rem;margin-top:6px;grid-column:2}
+li.item.ok{border-color:var(--ok);background:var(--ok-soft)}
+li.item.bad{border-color:var(--bad);background:var(--bad-soft)}
+li.item.half{border-color:var(--half);background:var(--half-soft)}
+li.item.ok .fb{color:var(--ok)} li.item.bad .fb{color:var(--bad)} li.item.half .fb{color:var(--half)}
+.fb b{font-style:italic}
+.fb .why{display:block;color:var(--ink);opacity:.85;margin-top:4px;line-height:1.55}.fb .why b{font-style:normal;font-family:var(--f-display);font-size:.78rem;letter-spacing:.05em;color:var(--muted);margin-right:4px}.unit-tag{font-family:var(--f-display);font-weight:800;color:var(--accent)}
+
+.result{background:var(--surface);border:2px solid var(--accent);border-radius:20px;padding:24px;margin-block:24px}
+.result[hidden]{display:none}
+.r-top{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.ring{position:relative;width:132px;height:132px;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12}
+.ring .bg{stroke:var(--chip)} .ring .fg{stroke:var(--accent);stroke-linecap:round;transition:stroke-dasharray .8s}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-size:1.9rem;font-weight:800}
+.r-txt{min-width:0;flex:1}
+.r-txt h2{font-size:1.6rem}
+.r-txt p{margin:6px 0;color:var(--muted)}
+.brk{margin-top:18px;display:grid;gap:8px}
+.brk div{display:grid;grid-template-columns:minmax(0,1fr) 90px 60px;gap:10px;align-items:center;font-size:.9rem}
+.brk .bar{min-width:0}
+.brk span:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.r-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:12px 56px}
+.pager a{text-decoration:none;font-weight:700;padding:12px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+@media (max-width:520px){ol.items{grid-template-columns:1fr}.brk div{grid-template-columns:minmax(0,1fr) 60px 52px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.vids{background:var(--accent-soft);border-radius:16px;padding:14px 18px;margin-block:14px}
+.vids ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.vids a{display:flex;gap:10px;align-items:center;text-decoration:none;font-weight:500;font-size:.93rem}
+.vids a:hover span:last-child{text-decoration:underline}
+.vids .play{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:.62rem}
+.vids small{display:block;color:var(--muted);font-weight:400;font-size:.78rem}
+.lv{display:inline-block;font-family:var(--f-display);font-weight:800;font-size:.72rem;letter-spacing:.06em;padding:2px 9px;border-radius:99px;background:var(--gold-soft);color:#6b4a00;margin-left:8px;vertical-align:middle}
+.dic{width:100%;border-collapse:collapse}
+</style>
+<style>
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.filters button{border:1.5px solid var(--line);background:var(--surface);border-radius:99px;padding:7px 16px;font-weight:700}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.card .top{display:flex;align-items:center;justify-content:space-between}
+.card .lv{margin:0}
+.credit{margin-top:8px}
+</style></head><body>
+<div id="app"></div>
+<script>
+const CARDS=[{"id": 1, "f": "tema01", "lv": "A1", "es": "Saludos y presentaciones", "ko": "인사하기와 자기소개", "desc": "시간대별 인사말, 헤어질 때 인사, 이름·출신·나이·직업 소개하기, 비격식/격식 대화의 기본 표현을 익힙니다.", "n": 24, "v": 5}, {"id": 2, "f": "tema02", "lv": "A1", "es": "Pronombres y verbos básicos", "ko": "인칭대명사와 기본 동사(ser·estar·tener·ir)", "desc": "주어 인칭대명사 6인칭, usted/ustedes 쓰임, 그리고 가장 많이 쓰는 불규칙 동사 4개의 현재형을 익힙니다.", "n": 24, "v": 6}, {"id": 3, "f": "tema03", "lv": "A1", "es": "SER, ESTAR y errores frecuentes", "ko": "ser와 estar 구분, 자주 하는 실수", "desc": "ser(본질·정체성)와 estar(상태·위치)의 쓰임을 비교하고, 나이·거주 기간·날씨 표현에서 학습자가 자주 틀리는 문장을 바로잡습니다.", "n": 23, "v": 5}, {"id": 4, "f": "tema04", "lv": "A1", "es": "Describir personas", "ko": "사람 묘사하기: 외모·성격·감정", "desc": "ser·estar·tener·llevar의 역할을 구분하고, 외모·머리카락·성격·감정 어휘로 사람을 묘사합니다.", "n": 24, "v": 5}, {"id": 5, "f": "tema05", "lv": "A1", "es": "Los números", "ko": "숫자: 기수와 서수", "desc": "0부터 백만 단위까지 숫자를 말하는 규칙과 uno/un/una, cien/ciento, 서수 primero~décimo를 익힙니다.", "n": 23, "v": 3}, {"id": 6, "f": "tema06", "lv": "A1", "es": "Días, meses, fechas y horas", "ko": "요일·월·계절·날짜·시각", "desc": "요일·월·계절 이름, 날짜 읽는 순서, 시각을 말하고 묻는 법을 익힙니다.", "n": 23, "v": 4}, {"id": 7, "f": "tema07", "lv": "A1", "es": "Países y nacionalidades", "ko": "국가와 국적", "desc": "스페인어를 쓰는 나라들과 세계 주요 국가의 이름·국적 형용사, 국적 형용사의 성·수 변화를 익힙니다.", "n": 24, "v": 4}, {"id": 8, "f": "tema08", "lv": "A1", "es": "Colores y ropa", "ko": "색깔과 옷, 신발, 액세서리", "desc": "색 이름과 성·수 일치, 옷·신발·액세서리 어휘, 옷 가게에서 쓰는 표현을 익힙니다.", "n": 24, "v": 4}, {"id": 9, "f": "tema09", "lv": "A1", "es": "Alimentos, bebidas y comidas", "ko": "음식·음료와 스페인의 식사 시간", "desc": "식재료·과일·채소·음료 어휘, 잔과 용기 이름, 스페인의 하루 다섯 끼 식사 문화를 익힙니다.", "n": 24, "v": 4}, {"id": 10, "f": "tema10", "lv": "A1", "es": "En la tienda, el bar, el restaurante y el hotel", "ko": "가게·바·식당·호텔에서 쓰는 여행 표현", "desc": "스페인 여행에서 바로 쓸 수 있는 쇼핑, 바에서 주문하기, 식당 예약·주문, 호텔 체크인 표현을 익힙니다.", "n": 24, "v": 4}, {"id": 11, "f": "tema11", "lv": "A1", "es": "Cocina española", "ko": "스페인 음식 만들기: 가스파초·상그리아·토르티야", "desc": "요리 영상에서 나오는 재료·분량·도구·순서 표현을 익히고, 스페인의 대표 음식 4가지를 소개합니다.", "n": 24, "v": 5}, {"id": 12, "f": "tema12", "lv": "A1", "es": "La casa", "ko": "집·방·가구·집안일", "desc": "집의 구조, 방과 가구, 주방·정원·욕실 어휘, 집안일과 위생용품 이름을 익힙니다.", "n": 24, "v": 8}, {"id": 13, "f": "tema13", "lv": "A1", "es": "La ciudad, las tiendas y el transporte", "ko": "도시 시설·상점 이름·교통수단", "desc": "도시의 장소, -ería로 끝나는 가게 이름과 점원 이름, 교통수단과 전치사 en / a pie를 익힙니다.", "n": 24, "v": 3}, {"id": 14, "f": "tema14", "lv": "A1", "es": "El cuerpo humano y “me duele”", "ko": "신체 부위와 아플 때 쓰는 표현", "desc": "얼굴·몸·관절·장기 이름과, doler 동사로 아픈 곳을 말하는 법을 익힙니다.", "n": 24, "v": 3}, {"id": 15, "f": "tema15", "lv": "A1", "es": "Profesiones y oficios", "ko": "직업 이름", "desc": "자주 쓰는 직업 이름과 남성·여성형, ser + 직업(관사 없음) 규칙을 익힙니다.", "n": 24, "v": 4}, {"id": 16, "f": "tema16", "lv": "A1", "es": "El tiempo y el clima", "ko": "날씨 표현과 스페인의 기후", "desc": "날씨 동사(hace, llueve, nieva…)와 겨울 어휘, 스페인의 4가지 기후를 익힙니다.", "n": 24, "v": 3}, {"id": 17, "f": "tema17", "lv": "A1", "es": "Tiempo libre, vacaciones, playa y piscina", "ko": "여가·휴가·해변·수영장", "desc": "집 안팎의 여가 활동, 휴가 목적지, 해변과 수영장 어휘를 익힙니다.", "n": 24, "v": 5}, {"id": 18, "f": "tema18", "lv": "A1", "es": "La clase y el material escolar", "ko": "교실·학용품·수업에서 쓰는 표현", "desc": "학용품과 교실 물건 이름, 스페인어 수업 첫 주에 꼭 필요한 6가지 문장을 익힙니다.", "n": 24, "v": 6}, {"id": 19, "f": "tema19", "lv": "A1", "es": "Artículos, género y plural", "ko": "관사·명사의 성·복수형", "desc": "정관사·부정관사의 쓰임, 남성/여성 명사 구별법, 복수형 만드는 규칙을 익힙니다.", "n": 24, "v": 3}, {"id": 20, "f": "tema20", "lv": "A1", "es": "Posesivos y demostrativos", "ko": "소유사·지시사", "desc": "mi·tu·su 형태와 용법, este·ese·aquel 구분, bueno/buen·grande/gran의 줄임을 익힙니다.", "n": 24, "v": 4}, {"id": 21, "f": "tema21", "lv": "A1", "es": "Cómo hacer preguntas", "ko": "의문문과 의문사", "desc": "예/아니오 질문, 의문사 qué·quién·dónde·cuándo·cómo·cuánto·por qué 사용법을 익힙니다.", "n": 24, "v": 2}, {"id": 22, "f": "tema22", "lv": "A1", "es": "Gustar y dar tu opinión", "ko": "gustar·의견 말하기·동의/반대", "desc": "gustar 구문, encantar의 올바른 용법, 의견을 말하고 동의·반대를 표현하는 법을 익힙니다.", "n": 24, "v": 5}, {"id": 23, "f": "tema23", "lv": "A1", "es": "Muy, mucho, poco y adverbios", "ko": "muy/mucho/poco · -mente 부사 · 흔한 실수", "desc": "muy와 mucho의 구분, poco, -mente 부사 만드는 법을 익힙니다.", "n": 24, "v": 3}, {"id": 24, "f": "tema24", "lv": "A1", "es": "Presente de indicativo", "ko": "현재형: 규칙·불규칙 동사", "desc": "-ar/-er/-ir 규칙 활용과 불규칙(1인칭 변화, 어간 모음 변화, 특수 동사)을 익힙니다.", "n": 24, "v": 11}, {"id": 25, "f": "tema25", "lv": "A1", "es": "La rutina diaria y los verbos reflexivos", "ko": "하루 일과와 재귀동사", "desc": "하루 일과 어휘와 순서 표현, 재귀동사(levantarse 등)를 익힙니다.", "n": 24, "v": 4}, {"id": 26, "f": "tema26", "lv": "A2", "es": "Las preposiciones", "ko": "전치사: 장소·시간·이동", "desc": "en/a/de/desde/hasta, 장소 위치 표현, hace·desde·desde hace를 익힙니다.", "n": 24, "v": 5}, {"id": 27, "f": "tema27", "lv": "A2", "es": "Pronombres de objeto directo e indirecto", "ko": "목적격 대명사: lo/la, le/les, se lo", "desc": "직접목적어(lo, la, los, las), 간접목적어(le, les), 두 대명사가 함께 올 때(se lo)를 익힙니다.", "n": 24, "v": 3}, {"id": 28, "f": "tema28", "lv": "A2", "es": "Comparativos y negaciones", "ko": "비교급·부정 표현", "desc": "más…que, menos…que, tan…como, mejor/peor 등 비교급과 no, nunca, nada, tampoco 등 부정어를 익힙니다.", "n": 24, "v": 2}, {"id": 29, "f": "tema29", "lv": "A2", "es": "El imperativo, ir/venir y llevar/traer", "ko": "명령형·ir/venir·llevar/traer", "desc": "긍정 명령(tú/usted), 부정 명령, ir·venir·llevar·traer의 구분을 익힙니다.", "n": 24, "v": 2}, {"id": 30, "f": "tema30", "lv": "A2", "es": "Pretéritos: perfecto, indefinido e imperfecto", "ko": "과거 시제 비교", "desc": "pretérito perfecto compuesto(he + 과거분사), indefinido, imperfecto의 용법과 선택 기준을 익힙니다.", "n": 24, "v": 5}, {"id": 31, "f": "tema31", "lv": "A1", "es": "Ortografía y pronunciación", "ko": "맞춤법·발음: B/V, R/RR, Z/C/Q/K, I/Y, U", "desc": "헷갈리기 쉬운 철자(b/v, r/rr, z/c/q/k, i/y)와 u의 특이한 철자를 익힙니다.", "n": 24, "v": 6}, {"id": 32, "f": "tema32", "lv": "A1", "es": "Falsos amigos español–inglés", "ko": "영어와 헷갈리는 단어 (false friends)", "desc": "영어와 비슷하게 생겼지만 뜻이 다른 단어(balón, carpeta, librería, embarazada 등)를 익힙니다.", "n": 24, "v": 4}, {"id": 33, "f": "tema33", "lv": "A1", "es": "España: regiones, geografía y tradiciones", "ko": "스페인의 지역·지리·전통", "desc": "17개 자치지역, 스페인의 지리, 생일 전통을 통해 스페인 문화를 익힙니다.", "n": 24, "v": 4}];
+const LVN={A1:'입문 A1',A2:'초급 A2'};
+const $=s=>document.querySelector(s);
+const store={get(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+const fmt=n=>(Math.round(n*10)/10).toString();
+let filter='all';
+function render(){
+  const pr=store.get('tee-progress')||{}; const name=store.get('tee-name')||'';
+  const done=CARDS.filter(c=>pr['ch'+c.id]).length;
+  const list=CARDS.filter(c=>filter==='all'||c.lv===filter);
+  $('#app').innerHTML=`
+  <header class="wrap hero">
+    <div class="eyebrow">Tu escuela de español · 입문(A1)·초급(A2) 영상 정리</div>
+    <h1>Español <em>paso a paso</em></h1>
+    <p>유튜브 채널 ‘Tu escuela de español’의 입문·초급 영상을 주제별로 묶어 핵심만 정리하고, 단원마다 연습문제로 복습하는 스페인어 학습 사이트입니다. 짧은 영상은 비슷한 주제끼리 한 단원으로 묶었어요.</p>
+    <div class="who">
+      <label for="stu">이름</label><input id="stu" type="text" placeholder="이름을 입력하세요" value="${name.replace(/"/g,'&quot;')}" autocomplete="off">
+      <div class="overall"><span>학습 진도 ${done} / ${CARDS.length}</span><div class="bar"><i style="width:${done/CARDS.length*100}%"></i></div></div>
+    </div>
+  </header>
+  <main class="wrap">
+    <ol class="steps"><li><b>영상</b>을 보거나 정리된 <b>핵심 설명</b>을 읽고 표현을 눌러 발음을 들어요.</li><li><b>연습문제</b>를 풀어요. 악센트 입력 버튼이 있어요.</li><li><b>채점하기</b>로 점수와 해설을 확인하고 틀린 문제만 다시 풀어요.</li></ol>
+    <div class="filters" role="group" aria-label="수준 선택">
+      ${[['all','전체'],['A1','입문 A1'],['A2','초급 A2']].map(f=>`<button type="button" data-f="${f[0]}" aria-pressed="${filter===f[0]}">${f[1]}</button>`).join('')}
+    </div>
+    <div class="grid">
+    ${list.map(c=>{const p=pr['ch'+c.id];return `
+      <a class="card" href="${c.f}/">
+        <div class="top"><div class="no">${c.id}</div><span class="lv">${LVN[c.lv]}</span></div>
+        <h2>${c.es}</h2>
+        <div class="ko">${c.ko}</div>
+        <div class="desc">${c.desc}</div>
+        <div class="bar"><i style="width:${p?p.score/p.total*100:0}%"></i></div>
+        <div class="meta"><span>영상 ${c.v}개 · ${c.n}문제</span><span>${p?`최고 ${fmt(p.score)} / ${p.total}점`:'아직 풀지 않음'}</span></div>
+        <span class="go">학습하기 →</span>
+      </a>`}).join('')}
+    </div>
+    <footer class="site"><p class="credit">영상 내용은 채널 ‘Tu escuela de español’(Elena)의 입문·초급 재생목록을 바탕으로 한국어 학습용으로 재구성했습니다. 원본 영상은 각 단원의 링크에서 볼 수 있어요.</p></footer>
+  </main>`;
+  $('#stu').addEventListener('input',e=>store.set('tee-name',e.target.value));
+  document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();});
+}
+render();
+</script></body></html>

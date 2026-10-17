@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Español paso a paso · 입문·초급 스페인어</title>
+__FONTS____CSS__
+<style>
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.filters button{border:1.5px solid var(--line);background:var(--surface);border-radius:99px;padding:7px 16px;font-weight:700}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.card .top{display:flex;align-items:center;justify-content:space-between}
+.card .lv{margin:0}
+.credit{margin-top:8px}
+</style></head><body>
+<div id="app"></div>
+<script>
+const CARDS=__CARDS__;
+const LVN={A1:'입문 A1',A2:'초급 A2'};
+const $=s=>document.querySelector(s);
+const store={get(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+const fmt=n=>(Math.round(n*10)/10).toString();
+let filter='all';
+function render(){
+  const pr=store.get('tee-progress')||{}; const name=store.get('tee-name')||'';
+  const done=CARDS.filter(c=>pr['ch'+c.id]).length;
+  const list=CARDS.filter(c=>filter==='all'||c.lv===filter);
+  $('#app').innerHTML=`
+  <header class="wrap hero">
+    <div class="eyebrow">Tu escuela de español · 입문(A1)·초급(A2) 영상 정리</div>
+    <h1>Español <em>paso a paso</em></h1>
+    <p>유튜브 채널 ‘Tu escuela de español’의 입문·초급 영상을 주제별로 묶어 핵심만 정리하고, 단원마다 연습문제로 복습하는 스페인어 학습 사이트입니다. 짧은 영상은 비슷한 주제끼리 한 단원으로 묶었어요.</p>
+    <div class="who">
+      <label for="stu">이름</label><input id="stu" type="text" placeholder="이름을 입력하세요" value="${name.replace(/"/g,'&quot;')}" autocomplete="off">
+      <div class="overall"><span>학습 진도 ${done} / ${CARDS.length}</span><div class="bar"><i style="width:${done/CARDS.length*100}%"></i></div></div>
+    </div>
+  </header>
+  <main class="wrap">
+    <ol class="steps"><li><b>영상</b>을 보거나 정리된 <b>핵심 설명</b>을 읽고 표현을 눌러 발음을 들어요.</li><li><b>연습문제</b>를 풀어요. 악센트 입력 버튼이 있어요.</li><li><b>채점하기</b>로 점수와 해설을 확인하고 틀린 문제만 다시 풀어요.</li></ol>
+    <div class="filters" role="group" aria-label="수준 선택">
+      ${[['all','전체'],['A1','입문 A1'],['A2','초급 A2']].map(f=>`<button type="button" data-f="${f[0]}" aria-pressed="${filter===f[0]}">${f[1]}</button>`).join('')}
+    </div>
+    <div class="grid">
+    ${list.map(c=>{const p=pr['ch'+c.id];return `
+      <a class="card" href="${c.f}/">
+        <div class="top"><div class="no">${c.id}</div><span class="lv">${LVN[c.lv]}</span></div>
+        <h2>${c.es}</h2>
+        <div class="ko">${c.ko}</div>
+        <div class="desc">${c.desc}</div>
+        <div class="bar"><i style="width:${p?p.score/p.total*100:0}%"></i></div>
+        <div class="meta"><span>영상 ${c.v}개 · ${c.n}문제</span><span>${p?`최고 ${fmt(p.score)} / ${p.total}점`:'아직 풀지 않음'}</span></div>
+        <span class="go">학습하기 →</span>
+      </a>`}).join('')}
+    </div>
+    <footer class="site"><p class="credit">영상 내용은 채널 ‘Tu escuela de español’(Elena)의 입문·초급 재생목록을 바탕으로 한국어 학습용으로 재구성했습니다. 원본 영상은 각 단원의 링크에서 볼 수 있어요.</p></footer>
+  </main>`;
+  $('#stu').addEventListener('input',e=>store.set('tee-name',e.target.value));
+  document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();});
+}
+render();
+</script></body></html>
